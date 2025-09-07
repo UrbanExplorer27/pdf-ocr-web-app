@@ -1,108 +1,162 @@
-# PDF OCR Tool
+# PDF OCR Web App
 
-A modern web application for extracting text from PDF files and images using Tesseract OCR with advanced image preprocessing.
+A modern, full-stack web application for extracting text from PDF files and images using advanced OCR technology. Built with FastAPI, React, and Tesseract with intelligent image preprocessing for maximum accuracy.
 
-## Features
+![PDF OCR Web App](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-- **PDF Processing**: Convert PDF pages to images and extract text
-- **Image OCR**: Support for PNG, JPG, JPEG, BMP, TIFF, and GIF files
-- **Advanced Image Processing**: Automatic image enhancement for better OCR accuracy
-- **Modern UI**: Clean, responsive interface built with React and TypeScript
-- **Real-time Processing**: Live progress updates during OCR processing
-- **Export Options**: Copy to clipboard or download extracted text
-- **Multi-page Support**: Handle PDFs with multiple pages
+## ✨ Features
 
-## Tech Stack
+### 🔍 **Advanced OCR Processing**
+- **Multi-method OCR**: Uses 6+ different Tesseract configurations for maximum accuracy
+- **Intelligent Image Preprocessing**: Bilateral filtering, CLAHE, adaptive thresholding
+- **Complex Document Support**: Handles ID cards, receipts, scanned documents
+- **Multiple Format Support**: PDF, PNG, JPG, JPEG, BMP, TIFF, GIF
 
-### Backend
-- **FastAPI**: Modern Python web framework
-- **Tesseract OCR**: Text extraction engine
-- **pdf2image**: PDF to image conversion
-- **OpenCV**: Image preprocessing and enhancement
-- **Pillow**: Image manipulation
+### 🎨 **Modern User Interface**
+- **Drag & Drop Upload**: Intuitive file upload with visual feedback
+- **Real-time Processing**: Live progress indicators and status updates
+- **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- **Export Options**: Copy to clipboard or download as text file
+- **Page-by-page Results**: Detailed breakdown for multi-page PDFs
 
-### Frontend
-- **React 18**: UI library
-- **TypeScript**: Type safety
-- **Vite**: Build tool and dev server
-- **Tailwind CSS**: Styling
-- **Axios**: HTTP client
-- **React Dropzone**: File upload handling
+### ⚡ **High Performance**
+- **Fast Processing**: Optimized image processing pipeline
+- **Concurrent Processing**: Handles multiple OCR methods simultaneously
+- **Error Handling**: Comprehensive error handling and user feedback
+- **Production Ready**: Built for scalability and reliability
 
-## Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 
-1. **Python 3.8+**
-2. **Node.js 16+**
-3. **Tesseract OCR**
+- **Python 3.8+**
+- **Node.js 16+**
+- **Tesseract OCR**
+- **Poppler** (for PDF processing)
 
-#### Install Tesseract OCR
+### Installation
 
-**macOS:**
+1. **Clone the repository:**
 ```bash
-brew install tesseract
+git clone https://github.com/UrbanExplorer27/pdf-ocr-web-app.git
+cd pdf-ocr-web-app
 ```
 
-**Ubuntu/Debian:**
+2. **Install system dependencies:**
 ```bash
-sudo apt-get install tesseract-ocr
+# macOS
+brew install tesseract poppler
+
+# Ubuntu/Debian
+sudo apt-get install tesseract-ocr poppler-utils
+
+# Windows
+# Download Tesseract from: https://github.com/UB-Mannheim/tesseract/wiki
+# Download Poppler from: https://blog.alivate.com.au/poppler-windows/
 ```
 
-**Windows:**
-Download from [GitHub releases](https://github.com/UB-Mannheim/tesseract/wiki)
-
-### Backend Setup
-
-1. Navigate to the project directory:
+3. **Set up the backend:**
 ```bash
-cd "ocr tool"
-```
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-2. Install Python dependencies:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-3. Start the backend server:
-```bash
+# Start backend server
 python backend/main.py
 ```
 
-The API will be available at `http://localhost:8000`
-
-### Frontend Setup
-
-1. Install Node.js dependencies:
+4. **Set up the frontend:**
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Start the development server:
-```bash
+# Start development server
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
+5. **Open your browser:**
+Navigate to `http://localhost:3000`
 
-## Usage
+## 🛠️ Tech Stack
 
-1. Open your browser and go to `http://localhost:3000`
-2. Drag and drop a PDF file or image, or click to browse
-3. Wait for the OCR processing to complete
-4. View, copy, or download the extracted text
+### Backend
+- **FastAPI**: Modern, fast web framework for building APIs
+- **Tesseract OCR**: Industry-standard OCR engine
+- **OpenCV**: Advanced image processing and computer vision
+- **pdf2image**: PDF to image conversion with Poppler
+- **Pillow**: Python Imaging Library for image manipulation
+- **Uvicorn**: ASGI server for production deployment
 
-## API Endpoints
+### Frontend
+- **React 18**: Modern UI library with hooks and concurrent features
+- **TypeScript**: Type-safe JavaScript for better development experience
+- **Vite**: Lightning-fast build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **Axios**: Promise-based HTTP client for API communication
+- **React Dropzone**: File upload with drag and drop support
 
-- `GET /` - API status
-- `GET /health` - Health check
-- `POST /upload-pdf` - Process PDF files
-- `POST /upload-image` - Process image files
+## 📁 Project Structure
 
-## Deployment
+```
+pdf-ocr-web-app/
+├── backend/
+│   └── main.py              # FastAPI application with OCR endpoints
+├── src/
+│   ├── components/          # React components
+│   │   ├── FileUpload.tsx   # File upload with drag & drop
+│   │   ├── ResultsDisplay.tsx # OCR results display
+│   │   └── Header.tsx       # Application header
+│   ├── services/
+│   │   └── ocrService.ts    # API service layer
+│   ├── types.ts            # TypeScript type definitions
+│   ├── App.tsx             # Main React component
+│   └── main.tsx            # React entry point
+├── requirements.txt         # Python dependencies
+├── package.json            # Node.js dependencies
+├── netlify.toml            # Netlify deployment configuration
+└── README.md               # This file
+```
 
-### Netlify Deployment
+## 🔧 API Endpoints
 
+### Health Check
+- `GET /` - API status and welcome message
+- `GET /health` - Detailed health check
+
+### OCR Processing
+- `POST /upload-pdf` - Process PDF files and extract text
+- `POST /upload-image` - Process image files and extract text
+
+### Response Format
+```json
+{
+  "success": true,
+  "filename": "document.pdf",
+  "total_pages": 3,
+  "total_words": 150,
+  "total_characters": 1200,
+  "pages": [
+    {
+      "page": 1,
+      "text": "Extracted text content...",
+      "word_count": 50,
+      "character_count": 400
+    }
+  ],
+  "full_text": "Complete extracted text..."
+}
+```
+
+## 🚀 Deployment
+
+### Frontend (Netlify)
 1. Build the frontend:
 ```bash
 npm run build
@@ -110,50 +164,95 @@ npm run build
 
 2. Deploy the `dist` folder to Netlify
 
-3. For the backend, deploy to a service like:
-   - Railway
-   - Heroku
-   - AWS Lambda
-   - Google Cloud Run
+3. Set environment variables:
+   - `VITE_API_URL`: Your backend API URL
 
-4. Update the `VITE_API_URL` environment variable with your backend URL
+### Backend (Railway/Heroku/AWS)
+1. Deploy to your preferred platform
+2. Install system dependencies (Tesseract, Poppler)
+3. Set up environment variables
+4. Configure CORS for your frontend domain
 
-## Development
+### Docker Deployment
+```dockerfile
+# Backend Dockerfile
+FROM python:3.9-slim
+RUN apt-get update && apt-get install -y tesseract-ocr poppler-utils
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "backend/main.py"]
+```
 
-### Running Both Services
+## 🧪 Testing
 
+### Backend Testing
 ```bash
-# Terminal 1 - Backend
-python backend/main.py
+# Test API endpoints
+curl -X POST -F "file=@test.pdf" http://localhost:8000/upload-pdf
+curl -X POST -F "file=@test.png" http://localhost:8000/upload-image
+```
 
-# Terminal 2 - Frontend
+### Frontend Testing
+```bash
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-### Project Structure
+## 🔍 OCR Configuration
 
-```
-ocr tool/
-├── backend/
-│   └── main.py              # FastAPI application
-├── src/
-│   ├── components/          # React components
-│   ├── services/           # API services
-│   ├── types.ts           # TypeScript types
-│   └── App.tsx            # Main React component
-├── requirements.txt        # Python dependencies
-├── package.json           # Node.js dependencies
-└── README.md
-```
+The application uses multiple OCR methods for maximum accuracy:
 
-## Contributing
+1. **Method 1**: Uniform block of text (PSM 6)
+2. **Method 2**: Single column of text (PSM 4)
+3. **Method 3**: Fully automatic page segmentation (PSM 3)
+4. **Method 4**: Automatic page segmentation with OSD (PSM 1)
+5. **Method 5**: Single word (PSM 8)
+6. **Method 6**: Raw line (PSM 13)
+7. **Original**: Unprocessed image for comparison
+
+## 🎯 Use Cases
+
+- **Document Digitization**: Convert paper documents to searchable text
+- **Receipt Processing**: Extract data from receipts and invoices
+- **ID Card Processing**: Extract information from identification documents
+- **Academic Research**: Process research papers and documents
+- **Business Automation**: Automate data entry from scanned documents
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-## License
+## 📝 License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) for text recognition
+- [FastAPI](https://fastapi.tiangolo.com/) for the backend framework
+- [React](https://reactjs.org/) for the frontend framework
+- [OpenCV](https://opencv.org/) for image processing
+- [pdf2image](https://github.com/Belval/pdf2image) for PDF processing
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/UrbanExplorer27/pdf-ocr-web-app/issues) page
+2. Create a new issue with detailed information
+3. Contact the maintainers
+
+---
+
+**Made with ❤️ for the open source community**
